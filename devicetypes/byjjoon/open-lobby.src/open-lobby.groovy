@@ -14,6 +14,7 @@
 metadata {
     definition (name: "Open Lobby", namespace: "ByJJoon", author: "ByJJoon", vid: "generic-contact-4", mnmn: "SmartThings") {
         capability "Door Control"
+        capability "Contact Sensor"
     }
 
     preferences {
@@ -45,11 +46,12 @@ def init(){
 
 def refresh(){
     log.debug "refresh()"
-    sendEvent(name: "door", value: "closed")
-
+    finishClosing()
+    
     if(!ip){
         log.error "설정에 IP 주소를 입력하세요!"
     }
+
 }
 
 def open_lobby(){
@@ -63,13 +65,26 @@ def open_lobby(){
     sendHubCommand(myhubAction)
 }
 
-def open(){
-    log.debug "로비 열림"
-    open_lobby()
-    sendEvent(name: "door", value: "open")
 
+def open() {
+    sendEvent(name: "door", value: "closing")
+    runIn(6, finishClosing)
+    log.debug "open()"
 }
 
-def close(){
+def close() {
+    open_lobby()
+    sendEvent(name: "door", value: "opening")
+    runIn(6, finishOpening)
     log.debug "close()"
+}
+
+def finishOpening() {
+    sendEvent(name: "door", value: "open")
+    sendEvent(name: "contact", value: "open")
+}
+
+def finishClosing() {
+    sendEvent(name: "door", value: "closed")
+    sendEvent(name: "contact", value: "closed")
 }
