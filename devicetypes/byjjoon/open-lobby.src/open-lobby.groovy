@@ -40,18 +40,11 @@ def updated(){
 }
 
 def init(){
-    refresh()
-    runEvery1Minute(refresh)
-}
-
-def refresh(){
-    log.debug "refresh()"
-    finishClosing()
+    log.debug "init()"
     
     if(!ip){
         log.error "설정에 IP 주소를 입력하세요!"
     }
-
 }
 
 def open_lobby(){
@@ -65,26 +58,21 @@ def open_lobby(){
     sendHubCommand(myhubAction)
 }
 
-
-def open() {
-    sendEvent(name: "door", value: "closing")
+def open(){
+    open_lobby()
+    sendEvent(name: "door", value: "opening")
     runIn(6, finishClosing)
     log.debug "open()"
 }
 
-def close() {
+def close(){
     open_lobby()
     sendEvent(name: "door", value: "opening")
-    runIn(6, finishOpening)
+    runIn(6, finishClosing)
     log.debug "close()"
 }
 
-def finishOpening() {
-    sendEvent(name: "door", value: "open")
-    sendEvent(name: "contact", value: "open")
-}
-
-def finishClosing() {
+def finishClosing(){
     sendEvent(name: "door", value: "closed")
     sendEvent(name: "contact", value: "closed")
 }
