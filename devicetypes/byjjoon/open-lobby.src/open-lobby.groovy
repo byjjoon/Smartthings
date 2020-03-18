@@ -12,7 +12,7 @@
  *
  */
 metadata {
-    definition (name: "Open Lobby", namespace: "ByJJoon", author: "ByJJoon", vid: "generic-contact-4", ocfdevicetype: "oic.d.garagedoor", mnmn: "SmartThings") {
+    definition (name: "Open Lobby", namespace: "ByJJoon", author: "ByJJoon", vid: "generic-contact-4", mnmn: "SmartThings") {
         capability "Door Control"
     }
 
@@ -64,11 +64,11 @@ def open_lobby(){
 }
 
 def open(){
-    log.debug "open()"
-}
-
-def close(){
     open_lobby()
     sendEvent(name: "door", value: "open")
     log.debug "로비 열림"
+}
+
+def close(){
+    log.debug "close()"
 }
