@@ -64,9 +64,10 @@ def open_lobby(){
 }
 
 def open(){
+    log.debug "로비 열림"
     open_lobby()
     sendEvent(name: "door", value: "open")
-    log.debug "로비 열림"
+
 }
 
 def close(){
