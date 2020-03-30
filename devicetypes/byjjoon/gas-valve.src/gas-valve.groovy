@@ -46,7 +46,7 @@ def init(){
 }
 
 def refresh(){
-    log.debug "refresh()"
+    //log.debug "refresh()"
 
     if(ip){
         def options = [
@@ -69,11 +69,11 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
 
         if(resp.gasvalve == 'open') {
             sendEvent(name: "valve", value: "open")
-            log.debug "가스밸브 상태 : open"
+            //log.debug "가스밸브 상태 : open"
         }
         else{
             sendEvent(name: "valve", value: "closed")
-            log.debug "가스밸브 상태 : close"
+            //log.debug "가스밸브 상태 : close"
         }
 
     } catch (e) {
@@ -94,10 +94,10 @@ def close_valve(){
 
 def open(){
     refresh()
-    log.debug "open()"
+    //log.debug "open()"
 }
 
 def close(){
     close_valve()
-    log.debug "가스밸브 잠금"
+    //log.debug "가스밸브 잠금"
 }

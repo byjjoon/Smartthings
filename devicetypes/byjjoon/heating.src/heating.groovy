@@ -50,7 +50,7 @@ def init(){
 }
 
 def refresh(){
-    log.debug "refresh()"
+    //log.debug "refresh()"
 
     if(ip){
         def options = [
@@ -79,9 +79,9 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
         # room4 : 방4
         */
         sendEvent(name: "temperature", value: resp[room]['current'], "unit":temperatureScale)
-        log.debug "현재 온도 : ${resp[room]['current']}"
+        //log.debug "현재 온도 : ${resp[room]['current']}"
         sendEvent(name: "heatingSetpoint", value: resp[room]['set'], "unit":temperatureScale)
-        log.debug "설정 온도 : ${resp[room]['set']}"
+        //log.debug "설정 온도 : ${resp[room]['set']}"
 
     } catch (e) {
         log.error "Exception caught while parsing data: "+e;
@@ -132,5 +132,5 @@ def setHeatingSetpoint(set_temp) {
     sendHubCommand(myhubAction)
       
     sendEvent("name":"heatingSetpoint", "value":temp, "unit":temperatureScale)
-    log.debug "setHeatingSetpoint()"
+    //log.debug "setHeatingSetpoint()"
 }
