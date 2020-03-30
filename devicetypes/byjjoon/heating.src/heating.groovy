@@ -132,5 +132,5 @@ def setHeatingSetpoint(set_temp) {
     sendHubCommand(myhubAction)
       
     sendEvent("name":"heatingSetpoint", "value":temp, "unit":temperatureScale)
-    //log.debug "setHeatingSetpoint()"
+    log.debug "setHeatingSetpoint()"
 }

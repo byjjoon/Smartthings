@@ -94,10 +94,10 @@ def close_valve(){
 
 def open(){
     refresh()
-    //log.debug "open()"
+    log.debug "open()"
 }
 
 def close(){
     close_valve()
-    //log.debug "가스밸브 잠금"
+    log.debug "가스밸브 잠금"
 }

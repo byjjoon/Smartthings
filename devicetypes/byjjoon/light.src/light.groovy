@@ -138,7 +138,7 @@ def on(){
     def myhubAction = new physicalgraph.device.HubAction(options, null)
     sendHubCommand(myhubAction)
     sendEvent(name: "switch", value: "on")
-    //log.debug "전등 스위치 : ON"
+    log.debug "전등 스위치 : ON"
 }
 
 def off(){
@@ -187,5 +187,5 @@ def off(){
     def myhubAction = new physicalgraph.device.HubAction(options, null)
     sendHubCommand(myhubAction)
     sendEvent(name: "switch", value: "off")
-    //log.debug "전등 스위치 : OFF"
+    log.debug "전등 스위치 : OFF"
 }
