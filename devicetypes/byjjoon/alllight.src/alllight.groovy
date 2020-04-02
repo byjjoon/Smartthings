@@ -67,7 +67,7 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
         msg = parseLanMessage(hubResponse.description)
         def resp = new JsonSlurper().parseText(msg.body)
 
-        if(resp[room] == 'on') {
+        if(resp[alllight] == 'on') {
             sendEvent(name: "switch", value: "on")
             //log.debug "일괄조명 상태 : 켜짐"
         }
