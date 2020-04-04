@@ -84,7 +84,7 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
 def close_valve(){
     def options = [
             "method": "GET",
-            "path": "/Close_Valve",
+            "path": "/Close_Gas",
             "headers": ["HOST": "${ip}"]
     ]
 
