@@ -55,7 +55,7 @@ def refresh(){
     if(ip){
         def options = [
                 "method": "GET",
-                "path": "/Heating",
+                "path": "/Heating?heating=" + heating,
                 "headers": ["HOST": "${ip}"]
         ]
 
@@ -78,10 +78,10 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
         # heating4 : 방3
         # heating5 : 방4
         */
-        sendEvent(name: "temperature", value: resp[heating]['current'], "unit":temperatureScale)
-        //log.debug "현재 온도 : ${resp[room]['current']}"
-        sendEvent(name: "heatingSetpoint", value: resp[heating]['set'], "unit":temperatureScale)
-        //log.debug "설정 온도 : ${resp[room]['set']}"
+        sendEvent(name: "temperature", value: resp.current, "unit":temperatureScale)
+        //log.debug "현재 온도 : ${resp.current}"
+        sendEvent(name: "heatingSetpoint", value: resp.set, "unit":temperatureScale)
+        //log.debug "설정 온도 : ${resp.set}"
 
     } catch (e) {
         log.error "Exception caught while parsing data: "+e;
