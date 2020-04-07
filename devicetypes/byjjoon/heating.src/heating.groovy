@@ -24,7 +24,7 @@ metadata {
     
     preferences {
         input "ip", "text", type: "text", title: "IP:PORT", description: "enter address must be [ip]:[port]", required: true
-        input "room", "text", type: "text", title: "ROOM", description: "room0 ~ room4", required: true
+        input "heating", "text", type: "text", title: "Heating Number", description: "heating1 ~ heating5", required: true
     }
 }
 
@@ -72,15 +72,15 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
         msg = parseLanMessage(hubResponse.description)
         def resp = new JsonSlurper().parseText(msg.body)
         /*
-        # room0 : 거실
-        # room1 : 방1
-        # room2 : 방2
-        # room3 : 방3
-        # room4 : 방4
+        # heating1 : 거실
+        # heating2 : 방1
+        # heating3 : 방2
+        # heating4 : 방3
+        # heating5 : 방4
         */
-        sendEvent(name: "temperature", value: resp[room]['current'], "unit":temperatureScale)
+        sendEvent(name: "temperature", value: resp[heating]['current'], "unit":temperatureScale)
         //log.debug "현재 온도 : ${resp[room]['current']}"
-        sendEvent(name: "heatingSetpoint", value: resp[room]['set'], "unit":temperatureScale)
+        sendEvent(name: "heatingSetpoint", value: resp[heating]['set'], "unit":temperatureScale)
         //log.debug "설정 온도 : ${resp[room]['set']}"
 
     } catch (e) {
@@ -90,41 +90,12 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
 
 
 def setHeatingSetpoint(set_temp) {
-    /*
-    # 1_0 : 거실
-    # 2_0 : 방1
-    # 3_0 : 방2
-    # 4_0 : 방3
-    # 5_0 : 방4
-    */
-    def code = ''
-    switch(room) {            
-        case "room0": 
-            code = '1_0'
-            break
-        case "room1": 
-            code = '2_0'
-            break
-        case "room2": 
-            code = '3_0'
-            break
-        case "room3": 
-            code = '4_0'
-            break
-        case "room4": 
-            code = '5_0'
-            break
-        default: 
-            println("error")
-            break
-    }
-
     def current = device.latestValue("temperature") as Integer
     def temp = set_temp as Integer
 
     def options = [
             "method": "GET",
-            "path": "/Control_Heating?room=" + code + "&current=" + current + "&set=" + temp,
+            "path": "/Control_Heating?heating=" + heating + "&current=" + current + "&set=" + temp,
             "headers": ["HOST": "${ip}"]
     ]
 
