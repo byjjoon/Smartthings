@@ -21,7 +21,7 @@ metadata {
     
     preferences {
         input "ip", "text", type: "text", title: "IP:PORT", description: "enter address must be [ip]:[port]", required: true
-        input "room", "text", type: "text", title: "ROOM", description: "room0 ~ room6", required: true
+        input "light_num", "text", type: "text", title: "Light Number", description: "light1 ~ light7", required: true
     }
 }
 
@@ -68,13 +68,13 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
         msg = parseLanMessage(hubResponse.description)
         def resp = new JsonSlurper().parseText(msg.body)
         /*
-        # room0 : 거실 1
-        # room1 : 거실 2
-        # room2 : 거실 3
-        # room3 : 방1 1
-        # room4 : 방2 1
-        # room5 : 방3 1
-        # room6 : 방4 1
+        # light1 : 거실 1
+        # light2 : 거실 2
+        # light3 : 거실 3
+        # light4 : 방1
+        # light5 : 방2
+        # light6 : 방3
+        # light7 : 방4
         */
         if(resp[room] == 'on') {
             sendEvent(name: "switch", value: "on")
@@ -90,48 +90,10 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
     }
 }
 
-
-
 def on(){
-    /*
-    # 1_1 : 거실 1
-    # 1_2 : 거실 2
-    # 1_3 : 거실 3
-    # 2_1 : 방1 1
-    # 3_1 : 방2 1
-    # 4_1 : 방3 1
-    # 5_1 : 방4 1
-    */
-    def code = ''
-    switch(room) {            
-        case "room0": 
-            code = '1_1'
-            break
-        case "room1": 
-            code = '1_2'
-            break
-        case "room2": 
-            code = '1_3'
-            break
-        case "room3": 
-            code = '2_1'
-            break
-        case "room4": 
-            code = '3_1'
-            break
-        case "room5":
-            code = '4_1'
-            break
-        case "room6":
-            code = '5_1'
-            break
-        default: 
-            println("error")
-            break
-    }
     def options = [
             "method": "GET",
-            "path": "/Control_Light?room=" + code + "&action=on",
+            "path": "/Control_Light?light=" + light_num + "&action=on",
             "headers": ["HOST": "${ip}"]
     ]
 
@@ -142,45 +104,9 @@ def on(){
 }
 
 def off(){
-    /*
-    # 1_1 : 거실 1
-    # 1_2 : 거실 2
-    # 1_3 : 거실 3
-    # 2_1 : 방1 1
-    # 3_1 : 방2 1
-    # 4_1 : 방3 1
-    # 5_1 : 방4 1
-    */
-    def code = ''
-    switch(room) {            
-        case "room0": 
-            code = '1_1'
-            break
-        case "room1": 
-            code = '1_2'
-            break
-        case "room2": 
-            code = '1_3'
-            break
-        case "room3": 
-            code = '2_1'
-            break
-        case "room4": 
-            code = '3_1'
-            break
-        case "room5":
-            code = '4_1'
-            break
-        case "room6":
-            code = '5_1'
-            break
-        default: 
-            println("error")
-            break
-    }
     def options = [
             "method": "GET",
-            "path": "/Control_Light?room=" + code + "&action=off",
+            "path": "/Control_Light?light=" + light_num + "&action=off",
             "headers": ["HOST": "${ip}"]
     ]
 
