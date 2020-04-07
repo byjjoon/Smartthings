@@ -11,8 +11,6 @@
  *  for the specific language governing permissions and limitations under the License.
  *
  */
-import groovy.json.*
-import groovy.json.JsonSlurper
 
 metadata {
     definition (name: "Light", namespace: "ByJJoon", author: "ByJJoon", vid: "generic-switch") {
@@ -52,7 +50,7 @@ def refresh(){
     if(ip){
         def options = [
                 "method": "GET",
-                "path": "/Light",
+                "path": "/Light?light=" + light_num,
                 "headers": ["HOST": "${ip}"]
         ]
 
@@ -63,10 +61,9 @@ def refresh(){
 }
 
 def update_data(physicalgraph.device.HubResponse hubResponse){
-    def msg
     try {
-        msg = parseLanMessage(hubResponse.description)
-        def resp = new JsonSlurper().parseText(msg.body)
+        def msg = parseLanMessage(hubResponse.description)
+        def resp = msg.body
         /*
         # light1 : 거실 1
         # light2 : 거실 2
@@ -76,7 +73,7 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
         # light6 : 방3
         # light7 : 방4
         */
-        if(resp[room] == 'on') {
+        if(resp == 'on') {
             sendEvent(name: "switch", value: "on")
             //log.debug "전등 상태 : 켜짐"
         }
