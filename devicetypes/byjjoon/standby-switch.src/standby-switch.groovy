@@ -19,7 +19,7 @@ metadata {
     
     preferences {
         input "ip", "text", type: "text", title: "IP:PORT", description: "enter address must be [ip]:[port]", required: true
-        input "switch_num", "text", type: "text", title: "Switch Number", description: "light1 ~ light13", required: true
+        input "switch_num", "text", type: "text", title: "Switch Number", description: "switch1 ~ switch13", required: true
     }
 }
 
