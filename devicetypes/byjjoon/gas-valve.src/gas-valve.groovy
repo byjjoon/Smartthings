@@ -68,11 +68,11 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
         def resp = new JsonSlurper().parseText(msg.body)
 
         if(resp.gasvalve == 'open') {
-            sendEvent(name: "valve", value: "open")
+            sendEvent(name: "valve", value: "open", displayed: true)
             //log.debug "가스밸브 상태 : open"
         }
         else{
-            sendEvent(name: "valve", value: "closed")
+            sendEvent(name: "valve", value: "closed", displayed: true)
             //log.debug "가스밸브 상태 : close"
         }
 

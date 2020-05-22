@@ -60,14 +60,14 @@ def open_lobby(){
 
 def open(){
     open_lobby()
-    sendEvent(name: "door", value: "opening")
+    sendEvent(name: "door", value: "opening", displayed: true)
     runIn(6, finishClosing)
     log.debug "open()"
 }
 
 def close(){
     open_lobby()
-    sendEvent(name: "door", value: "opening")
+    sendEvent(name: "door", value: "opening", displayed: true)
     runIn(6, finishClosing)
     log.debug "close()"
 }

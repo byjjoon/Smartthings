@@ -68,11 +68,11 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
         def resp = new JsonSlurper().parseText(msg.body)
 
         if(resp.alllight == 'on') {
-            sendEvent(name: "switch", value: "on")
+            sendEvent(name: "switch", value: "on", displayed: true)
             //log.debug "일괄조명 상태 : 켜짐"
         }
         else{
-            sendEvent(name: "switch", value: "off")
+            sendEvent(name: "switch", value: "off", displayed: true)
             //log.debug "일괄조명 상태 : 꺼짐"
         }
 
@@ -92,7 +92,7 @@ def on(){
 
     def myhubAction = new physicalgraph.device.HubAction(options, null)
     sendHubCommand(myhubAction)
-    sendEvent(name: "switch", value: "on")
+    sendEvent(name: "switch", value: "on", displayed: true)
     log.debug "일괄조명 스위치 : ON"
 }
 
@@ -107,6 +107,6 @@ def off(){
 
     def myhubAction = new physicalgraph.device.HubAction(options, null)
     sendHubCommand(myhubAction)
-    sendEvent(name: "switch", value: "off")
+    sendEvent(name: "switch", value: "off", displayed: true)
     log.debug "일괄조명 스위치 : OFF"
 }

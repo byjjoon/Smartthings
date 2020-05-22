@@ -68,11 +68,11 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
         def resp = new JsonSlurper().parseText(msg.body)
 
         if(resp.status == 'Good') {
-            sendEvent(name: "switch", value: "on")
+            sendEvent(name: "switch", value: "on", displayed: true)
             //log.debug "서버 상태 : 좋음"
         }
         else{
-            sendEvent(name: "switch", value: "off")
+            sendEvent(name: "switch", value: "off", displayed: true)
             //log.debug "서버 상태 : 나쁨"
         }
 

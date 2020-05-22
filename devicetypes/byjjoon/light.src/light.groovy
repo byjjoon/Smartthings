@@ -74,11 +74,11 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
         # light7 : 방4
         */
         if(resp == 'on') {
-            sendEvent(name: "switch", value: "on")
+            sendEvent(name: "switch", value: "on", displayed: true)
             //log.debug "전등 상태 : 켜짐"
         }
         else{
-            sendEvent(name: "switch", value: "off")
+            sendEvent(name: "switch", value: "off", displayed: true)
             //log.debug "전등 상태 : 꺼짐"
         }
 
@@ -96,7 +96,7 @@ def on(){
 
     def myhubAction = new physicalgraph.device.HubAction(options, null)
     sendHubCommand(myhubAction)
-    sendEvent(name: "switch", value: "on")
+    sendEvent(name: "switch", value: "on", displayed: true)
     log.debug "전등 스위치 : ON"
 }
 
@@ -109,6 +109,6 @@ def off(){
 
     def myhubAction = new physicalgraph.device.HubAction(options, null)
     sendHubCommand(myhubAction)
-    sendEvent(name: "switch", value: "off")
+    sendEvent(name: "switch", value: "off", displayed: true)
     log.debug "전등 스위치 : OFF"
 }

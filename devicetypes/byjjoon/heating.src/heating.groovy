@@ -78,9 +78,9 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
         # heating4 : 방3
         # heating5 : 방4
         */
-        sendEvent(name: "temperature", value: resp.current, "unit":temperatureScale)
+        sendEvent(name: "temperature", value: resp.current, unit: temperatureScale, displayed: true)
         //log.debug "현재 온도 : ${resp.current}"
-        sendEvent(name: "heatingSetpoint", value: resp.set, "unit":temperatureScale)
+        sendEvent(name: "heatingSetpoint", value: resp.set, unit: temperatureScale, displayed: true)
         //log.debug "설정 온도 : ${resp.set}"
 
     } catch (e) {
@@ -102,6 +102,6 @@ def setHeatingSetpoint(set_temp) {
     def myhubAction = new physicalgraph.device.HubAction(options, null)
     sendHubCommand(myhubAction)
       
-    sendEvent("name":"heatingSetpoint", "value":temp, "unit":temperatureScale)
+    sendEvent(name: "heatingSetpoint", value: temp, unit: temperatureScale, displayed: true)
     log.debug "setHeatingSetpoint()"
 }
