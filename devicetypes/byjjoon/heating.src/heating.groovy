@@ -67,9 +67,8 @@ def refresh(){
 
 
 def update_data(physicalgraph.device.HubResponse hubResponse){
-    def msg
     try {
-        msg = parseLanMessage(hubResponse.description)
+        def msg = parseLanMessage(hubResponse.description)
         def resp = new JsonSlurper().parseText(msg.body)
         /*
         # heating1 : 거실
@@ -101,6 +100,6 @@ def setHeatingSetpoint(Double set_temp) {
     def myhubAction = new physicalgraph.device.HubAction(options, null)
     sendHubCommand(myhubAction)
       
-    sendEvent(name: "heatingSetpoint", value: set_temp, unit: temperatureScale)
+    sendEvent(name: "heatingSetpoint", value: set_temp, unit: temperatureScale, displayed: true)
     log.debug "setHeatingSetpoint()"
 }
