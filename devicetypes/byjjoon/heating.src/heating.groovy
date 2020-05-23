@@ -103,6 +103,6 @@ def setHeatingSetpoint(set_temp) {
     def myhubAction = new physicalgraph.device.HubAction(options, null)
     sendHubCommand(myhubAction)
       
-    sendEvent(name: "heatingSetpoint", value: temp, unit: temperatureScale, displayed: true)
+    sendEvent(name: "heatingSetpoint", value: set_temp, unit: temperatureScale, displayed: true)
     log.debug "setHeatingSetpoint()"
 }
