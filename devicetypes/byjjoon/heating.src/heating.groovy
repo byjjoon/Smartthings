@@ -90,12 +90,13 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
 
 
 def setHeatingSetpoint(set_temp) {
-    def current = device.latestValue("temperature") as Integer
-    def temp = set_temp as Integer
+    def current = device.latestValue("temperature")
+    //def current = device.latestValue("temperature") as Integer
+    //def temp = set_temp as Integer
 
     def options = [
             "method": "GET",
-            "path": "/Control_Heating?heating=" + heating + "&current=" + current + "&set=" + temp,
+            "path": "/Control_Heating?heating=" + heating + "&current=" + current + "&set=" + set_temp,
             "headers": ["HOST": "${ip}"]
     ]
 
