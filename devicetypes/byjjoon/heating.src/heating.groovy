@@ -78,9 +78,9 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
         # heating4 : 방3
         # heating5 : 방4
         */
-        sendEvent(name: "temperature", value: resp.current, unit: temperatureScale, displayed: true)
+        sendEvent(name: "temperature", value: resp.current, scale: getTemperatureScale(), displayed: true)
         //log.debug "현재 온도 : ${resp.current}"
-        sendEvent(name: "heatingSetpoint", value: resp.set, unit: temperatureScale, displayed: true)
+        sendEvent(name: "heatingSetpoint", value: resp.set, scale: getTemperatureScale(), displayed: true)
         //log.debug "설정 온도 : ${resp.set}"
 
     } catch (e) {
