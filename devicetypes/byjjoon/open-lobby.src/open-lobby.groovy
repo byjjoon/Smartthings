@@ -12,7 +12,7 @@
  *
  */
 metadata {
-    definition (name: "Open Lobby", namespace: "ByJJoon", author: "ByJJoon", vid: "generic-contact-4", mnmn: "SmartThings") {
+    definition (name: "Open Lobby", namespace: "ByJJoon", author: "ByJJoon", vid: "generic-contact-4", mnmn: "SmartThings", ocfDeviceType: "oic.d.garagedoor") {
         capability "Door Control"
         capability "Contact Sensor"
     }
