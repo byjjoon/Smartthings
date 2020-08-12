@@ -1,30 +1,7 @@
-/**
- *  LG Air Conditioner(v.0.0.2)
+/*
+ *  LG Air Conditioner
  *
- * MIT License
- *
- * Copyright (c) 2019 fison67@nate.com
- *
- * Permission is hereby granted, free of charge, to any person
- * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without
- * restriction, including without limitation the rights to use,
- * copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following
- * conditions:
- * 
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
- * OTHER DEALINGS IN THE SOFTWARE.
+ * Original : https://github.com/fison67/LG-Connector/blob/master/devicetypes/fison67/lg-air-conditioner.src/lg-air-conditioner.groovy
 */
  
 import groovy.json.JsonSlurper
@@ -167,7 +144,7 @@ WIND_VALUE = [
 ]
 
 metadata {
-	definition (name: "LG Air Conditioner (patched)", namespace: "ByJJoon", author: "ByJJoon", ocfDeviceType: "oic.d.airconditioner") {
+	definition (name: "LG Air Conditioner", namespace: "ByJJoon", author: "ByJJoon", ocfDeviceType: "oic.d.airconditioner") {
         capability "Switch"
         capability "Thermostat Cooling Setpoint"
         capability "Thermostat Mode"
