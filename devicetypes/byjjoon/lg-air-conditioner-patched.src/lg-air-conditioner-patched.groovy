@@ -167,7 +167,7 @@ WIND_VALUE = [
 ]
 
 metadata {
-	definition (name: "LG Air Conditioner", namespace: "ByJJoon", author: "ByJJoon", ocfDeviceType: "oic.d.airconditioner") {
+	definition (name: "LG Air Conditioner (patched)", namespace: "ByJJoon", author: "ByJJoon", ocfDeviceType: "oic.d.airconditioner") {
         capability "Switch"
         capability "Thermostat Cooling Setpoint"
         capability "Thermostat Mode"
