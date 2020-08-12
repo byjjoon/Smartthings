@@ -71,7 +71,7 @@ COURSE_VALUE = [
 ]
 
 metadata {
-	definition (name: "LG Dryer", namespace: "ByJJoon", author: "ByJJoon", ocfDeviceType:"oic.d.dryer") {
+	definition (name: "LG Dryer", namespace: "fison67", author: "ByJJoon", ocfDeviceType:"oic.d.dryer") {
         capability "Sensor"
         capability "Switch"
         capability "Dryer Operating State"
