@@ -17,9 +17,8 @@ import groovy.json.JsonSlurper
 metadata {
     definition (name: "Heating", namespace: "ByJJoon", author: "ByJJoon", vid: "generic-radiator-thermostat-2") {
         capability "Thermostat"
-        capability "Thermostat Heating Setpoint"
-        capability "Thermostat Cooling Setpoint"
         capability "Temperature Measurement"
+        //capability "Thermostat Heating Setpoint"
     }
     
     preferences {
