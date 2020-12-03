@@ -18,7 +18,7 @@ metadata {
     definition (name: "Heating", namespace: "ByJJoon", author: "ByJJoon", vid: "generic-radiator-thermostat-2") {
         capability "Thermostat"
         capability "Temperature Measurement"
-        //capability "Thermostat Heating Setpoint"
+        capability "Thermostat Heating Setpoint"
     }
     
     preferences {
@@ -80,10 +80,10 @@ def update_data(physicalgraph.device.HubResponse hubResponse){
         log.debug "설정 온도 : ${resp.set}"
         
         if(resp.current != ""){
-            sendEvent(name: "temperature", value: resp.current, unit: temperatureScale)
+            sendEvent(name: "temperature", value: resp.current, unit: temperatureScale, displayed: true)
         }
         if(resp.set != ""){
-            sendEvent(name: "heatingSetpoint", value: resp.set, unit: temperatureScale)
+            sendEvent(name: "heatingSetpoint", value: resp.set, unit: temperatureScale, displayed: true)
         }
     } catch (e) {
         log.error "Exception caught while parsing data: "+e;
@@ -103,6 +103,6 @@ def setHeatingSetpoint(Double set_temp) {
     def myhubAction = new physicalgraph.device.HubAction(options, null)
     sendHubCommand(myhubAction)
       
-    sendEvent(name: "heatingSetpoint", value: set_temp, unit: temperatureScale)
+    sendEvent(name: "heatingSetpoint", value: set_temp, unit: temperatureScale, displayed: true)
     log.debug "setHeatingSetpoint()"
 }
