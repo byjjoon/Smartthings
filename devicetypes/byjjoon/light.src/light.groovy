@@ -13,7 +13,7 @@
  */
 
 metadata {
-    definition (name: "Light", namespace: "ByJJoon", author: "ByJJoon", vid: "generic-switch") {
+    definition (name: "Light", namespace: "ByJJoon", author: "ByJJoon", ocfDeviceType: "oic.d.light") {
         capability "Switch"
     }
     

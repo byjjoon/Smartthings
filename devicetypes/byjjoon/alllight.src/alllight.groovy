@@ -15,7 +15,7 @@ import groovy.json.*
 import groovy.json.JsonSlurper
 
 metadata {
-    definition (name: "AllLight", namespace: "ByJJoon", author: "ByJJoon", vid: "generic-switch") {
+    definition (name: "AllLight", namespace: "ByJJoon", author: "ByJJoon", ocfDeviceType: "oic.d.light") {
         capability "Switch"
     }
     
